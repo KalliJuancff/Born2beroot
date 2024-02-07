@@ -19,6 +19,7 @@ free --mega | grep "Mem:" | awk -F' ' '{printf ("%d/%dMB (%.2f)%% \n", $3, $4,($
 # 6. El porcentaje actual de uso de tus núcleos:
 
 # 7. La fecha y hora del último reinicio:
+who -b | awk -F' ' '{printf("%s %s\n", $4, $5)}'
 
 # 8. Si LVM está activo o no:
 
