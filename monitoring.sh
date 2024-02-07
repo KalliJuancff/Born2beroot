@@ -23,6 +23,8 @@ echo -n "#Last boot   : "
 who -b | awk -F' ' '{printf("%s %s\n", $4, $5)}'
 
 # 8. Si LVM está activo o no:
+echo -n "#LVM use     : "
+[ $(lsblk | grep "lvm" | wc -l) -gt 0 ] && echo "yes" || echo "no"
 
 # 9. El número de conexiones activas:
 
