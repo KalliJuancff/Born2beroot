@@ -10,3 +10,7 @@ grep "physical id" /proc/cpuinfo | wc -l
 echo -n "#vCPU        : "
 grep "processor" /proc/cpuinfo | tail -n 1 | awk -F' ' '{print $3 + 1}'
 
+# La memoria RAM disponible actualmente en tu servidor y su porcentaje de uso:
+echo -n "#Memory Usage: "
+free --mega | grep "Mem:" | awk -F' ' '{printf ("%d/%dMB (%.2f)%% \n", $3, $4,($3 * 100)/$4)}'
+
