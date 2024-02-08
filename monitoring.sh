@@ -54,7 +54,7 @@ wall "
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
 #TCP Connections: $tcp_connections (ESTABLISHED)
-#Network        : $ip_address $(mac_address)
+#Network        : $ip_address ($mac_address)
 "
 #User log       : $user_log
 #Sudo           : $sudo cmd(s)
