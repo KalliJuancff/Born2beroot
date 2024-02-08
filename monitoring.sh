@@ -53,7 +53,7 @@ wall "
 #Memory Usage   : $memory_usage
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
-#TCP Connections: $tcp_connections ESTABLISHED
+#TCP Connections: $tcp_connections (ESTABLISHED)
 "
 #User log       : $user_log
 #Network        : $ip $(mac_address)
