@@ -29,7 +29,7 @@ last_boot=$(who -b | awk -F' ' '{printf("%s %s\n", $4, $5)}')
 lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
 
 # 9. El número de conexiones activas:
-tcp_connections=$(ss -ta | grep ESTAB | wc -l | awk '{printf ("%d (ESTABLISHED)\n", $1)}')
+tcp_connections=$(ss -ta | grep ESTAB | wc -l | awk '{print $1}')
 
 # 10. El número de usuarios del servidor:
 # NOTA:
