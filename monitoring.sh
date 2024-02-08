@@ -31,6 +31,13 @@ echo -n "#TCP Connections: "
 ss -ta | grep ESTAB | wc -l | awk '{printf ("%d (ESTABLISHED)\n", $1)}'
 
 # 10. El número de usuarios del servidor:
+# NOTA:
+# He descartado el comando "w" porque, en un Mac, me devolvía el mismo usuario
+# dos veces, con TTY diferente, y "users" me devolvía sólo uno de ellos,
+# mientras que en una RPi 4, el resultado era diferente, devolviendo "users"
+# el mismo usuario dos veces (el usuario "pi")
+echo -n "#User log       : "
+users | wc -w
 
 # 11. La dirección IPv4 de tu servidor y su MAC (Media Access Control):
 
