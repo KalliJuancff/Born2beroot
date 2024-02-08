@@ -40,6 +40,9 @@ echo -n "#User log       : "
 users | wc -w
 
 # 11. La dirección IPv4 de tu servidor y su MAC (Media Access Control):
+echo -n "#Network        : "
+ip address show | grep 'inet' | grep -v 'inet6' | grep -v '127.0.0.1' | awk -F '[ ,/]'+ '{printf ("%s", $2)}'
+ip address show | grep 'link/ether' | awk -F ' ' '{print " (" $2 ")"}'
 
 # 12. El número de comandos ejecutados con sudo:
 
