@@ -40,8 +40,8 @@ tcp_connections=$(ss -ta | grep ESTAB | wc -l | awk '{print $1}')
 user_log=$(users | wc -w)
 
 # 11. La dirección IPv4 de tu servidor y su MAC (Media Access Control):
-ip=$(ip address show | grep 'inet' | grep -v 'inet6' | grep -v '127.0.0.1' | awk -F '[ ,/]'+ '{print $3}')
-mac=$(ip address show | grep 'link/ether' | awk -F ' ' '{print $2}')
+ip_address=$(ip address show | grep 'inet' | grep -v 'inet6' | grep -v '127.0.0.1' | awk -F '[ ,/]'+ '{print $3}')
+mac_address=$(ip address show | grep 'link/ether' | awk -F ' ' '{print $2}')
 
 # 12. El número de comandos ejecutados con sudo:
 	# sudo=$(journalctl _COMM=sudo | grep "COMMAND" | wc -l | awk '{print $1 " cmd(s)"}')
@@ -54,7 +54,7 @@ wall "
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
 #TCP Connections: $tcp_connections (ESTABLISHED)
-#Network        : $ip $(mac_address)
+#Network        : $ip_address $(mac_address)
 "
 #User log       : $user_log
 #Sudo           : $sudo cmd(s)
