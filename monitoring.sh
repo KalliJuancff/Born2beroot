@@ -23,7 +23,7 @@ cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
 # 6. El porcentaje actual de uso de tus núcleos:
 
 # 7. La fecha y hora del último reinicio:
-	# last_boot=$(who -b | awk -F' ' '{printf("%s %s\n", $4, $5)}')
+last_boot=$(who -b | awk -F' ' '{printf("%s %s\n", $4, $5)}')
 
 # 8. Si LVM está activo o no:
 lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
@@ -49,11 +49,11 @@ user_log=$(users | wc -w)
 wall "
 #Architecture   : $architecture
 #CPU physical   : $cpu_physical
+#Last boot      : $last_boot
 #LVM use        : $lvm_use
 "
 #vCPU           : $v_cpu
 #Memory Usage   : $memory_usage
-#Last boot      : $last_boot
 #TCP Connections: $tcp_connections ESTABLISHED
 #User log       : $user_log
 #Network        : $ip $(mac_address)
