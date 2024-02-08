@@ -10,7 +10,7 @@
 architecture=$(uname -a)
 
 # 2. El número de núcleos físicos:
-	# cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
+cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
 
 # 3. El número de núcleos virtuales:
 	# v_cpu=$(grep "processor" /proc/cpuinfo | tail -n 1 | awk -F' ' '{print $3 + 1}')
@@ -26,7 +26,7 @@ architecture=$(uname -a)
 	# last_boot=$(who -b | awk -F' ' '{printf("%s %s\n", $4, $5)}')
 
 # 8. Si LVM está activo o no:
-	# lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
+lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
 
 # 9. El número de conexiones activas:
 	# tcp_connections=$(ss -ta | grep ESTAB | wc -l | awk '{printf ("%d (ESTABLISHED)\n", $1)}')
@@ -48,12 +48,12 @@ user_log=$(users | wc -w)
 
 wall "
 #Architecture   : $architecture
-"
 #CPU physical   : $cpu_physical
+#LVM use        : $lvm_use
+"
 #vCPU           : $v_cpu
 #Memory Usage   : $memory_usage
 #Last boot      : $last_boot
-#LVM use        : $lvm_use
 #TCP Connections: $tcp_connections ESTABLISHED
 #User log       : $user_log
 #Network        : $ip $(mac_address)
