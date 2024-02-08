@@ -13,7 +13,7 @@ architecture=$(uname -a)
 cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
 
 # 3. El número de núcleos virtuales:
-	# v_cpu=$(grep "processor" /proc/cpuinfo | tail -n 1 | awk -F' ' '{print $3 + 1}')
+v_cpu=$(grep "processor" /proc/cpuinfo | tail -n 1 | awk -F' ' '{print $3 + 1}')
 
 # 4. La memoria RAM disponible actualmente en tu servidor y su porcentaje de uso:
 	# memory_usage=$(free --mega | grep "Mem:" | awk -F' ' '{printf ("%d/%dMB (%.2f)%% \n", $3, $4,($3 * 100)/$4)}')
@@ -49,10 +49,10 @@ user_log=$(users | wc -w)
 wall "
 #Architecture   : $architecture
 #CPU physical   : $cpu_physical
+#vCPU           : $v_cpu
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
 "
-#vCPU           : $v_cpu
 #Memory Usage   : $memory_usage
 #TCP Connections: $tcp_connections ESTABLISHED
 #User log       : $user_log
