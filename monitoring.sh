@@ -44,7 +44,7 @@ ip_address=$(ip address show | grep 'inet' | grep -v 'inet6' | grep -v '127.0.0.
 mac_address=$(ip address show | grep 'link/ether' | awk -F ' ' '{print $2}')
 
 # 12. El número de comandos ejecutados con sudo:
-	# sudo=$(journalctl _COMM=sudo | grep "COMMAND" | wc -l | awk '{print $1 " cmd(s)"}')
+sudo=$(journalctl _COMM=sudo | grep "COMMAND" | wc -l | awk '{print $1}')
 
 wall "
 #Architecture   : $architecture
@@ -54,7 +54,7 @@ wall "
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
 #TCP Connections: $tcp_connections (ESTABLISHED)
-#Network        : $ip_address ($mac_address)
-"
 #User log       : $user_log
+#Network        : $ip_address ($mac_address)
 #Sudo           : $sudo cmd(s)
+"
