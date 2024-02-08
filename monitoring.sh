@@ -45,5 +45,5 @@ ip address show | grep 'inet' | grep -v 'inet6' | grep -v '127.0.0.1' | awk -F '
 ip address show | grep 'link/ether' | awk -F ' ' '{print " (" $2 ")"}'
 
 # 12. El número de comandos ejecutados con sudo:
-
-
+echo -n "#Sudo           : "
+journalctl -COMM=sudo | grep "COMMAND" | wc -l | awk '{print $1 " cmd(s)"}'
