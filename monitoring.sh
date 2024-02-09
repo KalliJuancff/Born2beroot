@@ -1,6 +1,6 @@
 #!/bin/bash
 # 
-# Script del proyecto Born2beroot
+# Script del proyecto 'Born2beroot'
 # Autor: Juan Carlos Fidalgo Fernández
 # Fecha: lunes, 5 de febrero de 2024
 # 
@@ -47,6 +47,10 @@ mac_address=$(ip address show | grep 'link/ether' | awk -F ' ' '{print $2}')
 sudo=$(journalctl _COMM=sudo | grep "COMMAND" | wc -l | awk '{print $1}')
 
 wall "
+**********************
+RESUMEN INFO. SISTEMA:
+**********************
+
 #Architecture   : $architecture
 #CPU physical   : $cpu_physical
 #vCPU           : $v_cpu
