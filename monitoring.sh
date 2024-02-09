@@ -21,7 +21,8 @@ memory_usage=$(free --mega | grep "Mem:" | awk -F' ' '{printf "%d/%dMB (%.2f%%) 
 # 5. La memoria disponible actualmente en tu servidor y su utilización como un porcentaje:
 total_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{total += $2} END {print total}')
 used_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{used += $3} END {print used}')
-# percentage=
+percentage=$(((used_memory * 100) / total_memory))
+formatted_percentage=$(printf "%.2f" $percentage)
 
 # 6. El porcentaje actual de uso de tus núcleos:
 
@@ -58,7 +59,7 @@ RESUMEN INFO. SISTEMA:
 #CPU physical   : $cpu_physical
 #vCPU           : $v_cpu
 #Memory Usage   : $memory_usage
-#Disk Usage     : $total_memory/$used_memoryGb
+#Disk Usage     : $used_memory/$total_memory"Gb" ($formatted_percentage"%")
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
 #TCP Connections: $tcp_connections (ESTABLISHED)
