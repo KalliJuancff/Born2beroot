@@ -16,14 +16,17 @@ cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
 v_cpu=$(grep "processor" /proc/cpuinfo | tail -n 1 | awk -F' ' '{print $3 + 1}')
 
 # 4. La memoria RAM disponible actualmente en tu servidor y su porcentaje de uso:
-memory_usage=$(free --mega | grep "Mem:" | awk -F' ' '{printf ("%d/%dMB (%.2f%%) \n", $3, $2,($3 * 100)/$2)}')
+memory_usage=$(free --mega | grep "Mem:" | awk -F' ' '{printf "%d/%dMB (%.2f%%) \n", $3, $2,($3 * 100)/$2}')
 
 # 5. La memoria disponible actualmente en tu servidor y su utilización como un porcentaje:
+total_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{total += $3} END {print total}')
+# used_memory=
+# percentage=
 
 # 6. El porcentaje actual de uso de tus núcleos:
 
 # 7. La fecha y hora del último reinicio:
-last_boot=$(who -b | awk -F' ' '{printf("%s %s\n", $4, $5)}')
+last_boot=$(who -b | awk -F' ' '{printf "%s %s\n", $4, $5}')
 
 # 8. Si LVM está activo o no:
 lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
@@ -55,6 +58,7 @@ RESUMEN INFO. SISTEMA:
 #CPU physical   : $cpu_physical
 #vCPU           : $v_cpu
 #Memory Usage   : $memory_usage
+#Disk Usage     : $total_memory
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
 #TCP Connections: $tcp_connections (ESTABLISHED)
