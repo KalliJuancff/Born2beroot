@@ -22,6 +22,7 @@ memory_usage=$(free --mega | grep "Mem:" | awk -F' ' '{printf "%d/%dMB (%.2f%%) 
 total_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{total += $2} END {print total}')
 used_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{used += $3} END {print used}')
 percentage=$(((used_memory * 100) / total_memory))
+total_memory=$(echo $total_memory | awk '{printf "%.2f", ($1 / 1024)}')
 formatted_percentage=$(printf "%.2f" $percentage)
 
 # 6. El porcentaje actual de uso de tus núcleos:
