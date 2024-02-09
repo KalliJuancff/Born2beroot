@@ -16,7 +16,7 @@ cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
 v_cpu=$(grep "processor" /proc/cpuinfo | tail -n 1 | awk -F' ' '{print $3 + 1}')
 
 # 4. La memoria RAM disponible actualmente en tu servidor y su porcentaje de uso:
-memory_usage=$(free --mega | grep "Mem:" | awk -F' ' '{printf ("%d/%dMB (%.2f)%% \n", $3, $2,($3 * 100)/$2)}')
+memory_usage=$(free --mega | grep "Mem:" | awk -F' ' '{printf ("%d/%dMB (%.2f%%) \n", $3, $2,($3 * 100)/$2)}')
 
 # 5. La memoria disponible actualmente en tu servidor y su utilización como un porcentaje:
 
