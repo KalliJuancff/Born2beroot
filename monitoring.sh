@@ -26,6 +26,7 @@ total_memory=$(echo $total_memory | awk '{printf "%.2f", ($1 / 1024)}')
 formatted_percentage=$(printf "%.2f" $percentage)
 
 # 6. El porcentaje actual de uso de tus núcleos:
+cpu_load=$((100 - (vmstat | tail -1 | awk -F ' ' '{print $15}')))
 
 # 7. La fecha y hora del último reinicio:
 last_boot=$(who -b | awk -F' ' '{printf "%s %s\n", $4, $5}')
@@ -61,6 +62,7 @@ RESUMEN INFO. SISTEMA:
 #vCPU           : $v_cpu
 #Memory Usage   : $memory_usage
 #Disk Usage     : $used_memory/$total_memory"Gb" ($formatted_percentage"%")
+#CPU Load       : $cpu_load
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
 #TCP Connections: $tcp_connections (ESTABLISHED)
