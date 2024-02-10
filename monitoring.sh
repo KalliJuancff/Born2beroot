@@ -13,7 +13,7 @@ architecture=$(uname -a)
 cpu_physical=$(grep "physical id" /proc/cpuinfo | wc -l)
 
 # 3. El número de núcleos virtuales:
-v_cpu=$(grep "processor" /proc/cpuinfo | tail -n 1 | awk -F' ' '{print $3 + 1}')
+v_cpu=$(grep "processor" /proc/cpuinfo | tail -n 1 | awk -F ' ' '{print $3 + 1}')
 
 # 4. La memoria RAM disponible actualmente en tu servidor y su porcentaje de uso:
 memory_usage=$(free --mega | grep "Mem:" | awk -F' ' '{printf "%d/%dMB (%.2f%%) \n", $3, $2,($3 * 100)/$2}')
@@ -23,7 +23,7 @@ total_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{total += $2} END {
 used_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{used += $3} END {print used}')
 percentage=$(((used_memory * 100) / total_memory))
 total_memory=$(echo $total_memory | awk '{printf "%.2f", ($1 / 1024)}')
-formatted_percentage=$(printf "%.2f" $percentage)
+percentage=$(printf "%.2f", $percentage)
 
 # 6. El porcentaje actual de uso de tus núcleos:
 cpu_load=$(vmstat | tail -1 | awk -F ' ' '{print $15}')
@@ -62,7 +62,7 @@ RESUMEN INFO. SISTEMA:
 #CPU physical   : $cpu_physical
 #vCPU           : $v_cpu
 #Memory Usage   : $memory_usage
-#Disk Usage     : $used_memory/$total_memory"Gb" ($formatted_percentage%)
+#Disk Usage     : $used_memory/$total_memory"Gb" ($percentage%)
 #CPU Load       : $cpu_load%
 #Last boot      : $last_boot
 #LVM use        : $lvm_use
