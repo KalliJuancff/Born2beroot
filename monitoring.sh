@@ -26,7 +26,7 @@ total_memory=$(echo $total_memory | awk '{printf "%.2f", ($1 / 1024)}')
 formatted_percentage=$(printf "%.2f" $percentage)
 
 # 6. El porcentaje actual de uso de tus núcleos:
-cpu_load=$((100 - (vmstat | tail -1 | awk -F ' ' '{print $15}')))
+cpu_load=$(vmstat | tail -1 | awk -F ' ' '{print $15}')
 cpu_load=$(echo $cpu_load | awk '{printf "%.2f", (100 - $1)}')
 
 # 7. La fecha y hora del último reinicio:
