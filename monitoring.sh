@@ -23,7 +23,7 @@ total_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{total += $2} END {
 used_memory=$(df -m | grep "/dev/" | grep -v "/boot" | awk '{used += $3} END {print used}')
 percentage=$(((used_memory * 100) / total_memory))
 total_memory=$(echo $total_memory | awk '{printf "%.2f", ($1 / 1024)}')
-percentage=$(printf "%.2f", $percentage)
+percentage=$(echo $percentage | awk '{printf "%.2f", $1}')
 
 # 6. El porcentaje actual de uso de tus núcleos:
 cpu_load=$(vmstat | tail -1 | awk -F ' ' '{print $15}')
