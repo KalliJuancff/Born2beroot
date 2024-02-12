@@ -30,7 +30,7 @@ cpu_load=$(vmstat | tail -1 | awk -F ' ' '{print $15}')
 cpu_load=$(echo $cpu_load | awk '{printf "%.2f", (100 - $1)}')
 
 # 7. La fecha y hora del último reinicio:
-last_boot=$(who -b | awk -F' ' '{printf "%s %s\n", $4, $5}')
+last_boot=$(who -b | awk -F' ' '{printf "%s %s\n", $3, $4}')
 
 # 8. Si LVM está activo o no:
 lvm_use=$(if [ $(lsblk | grep "lvm" | wc -l) -gt 0 ]; then echo yes; else echo no; fi)
